@@ -1,10 +1,16 @@
 {
   "name": "k6-load-template",
   "version": "1.0.0",
-  "description": "Project to set a k6 template.",
-  "main": "index.js",
+  "description": "AI-augmented k6 load/stress test template (TypeScript).",
+  "type": "module",
   "scripts": {
-    "test": "k6 run -c config/test.json main.js"
+    "test": "env-cmd k6 run main.ts",
+    "test:smoke": "env-cmd k6 run -e CONFIG_FILE=config/profiles/smoke.json main.ts",
+    "test:load": "env-cmd k6 run -e CONFIG_FILE=config/profiles/load.json main.ts",
+    "test:stress": "env-cmd k6 run -e CONFIG_FILE=config/profiles/stress.json main.ts",
+    "test:spike": "env-cmd k6 run -e CONFIG_FILE=config/profiles/spike.json main.ts",
+    "test:soak": "env-cmd k6 run -e CONFIG_FILE=config/profiles/soak.json main.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "k6",
@@ -15,7 +21,9 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "k6": "^0.0.0"
+  "devDependencies": {
+    "@types/k6": "^2.0.1",
+    "env-cmd": "^11.0.0",
+    "typescript": "^7.0.2"
   }
 }
